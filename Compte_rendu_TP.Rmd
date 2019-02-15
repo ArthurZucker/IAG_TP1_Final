@@ -1,0 +1,30 @@
+---
+title: "Rapport du travail effectu<c3><a9> sur les TP1 et 2 d'algorithmique g<c3><a9>n<c3><a9>rale"
+author: "Arthur Zucker"
+date: "08/02/2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Rapport du travail effectué sur les TP1 et 2 d'algorithmique générale
+Inline `code` has `back-ticks around` it.
+```{bash}
+pwd
+ls
+```
+
+
+
+# Le parcour DFS va pour ma structure renomer les points en 111 pour 1.1.1
+Ce parcour va au commencer en 1 point aléatoire, pour renvoyer une matrice contenant les sommets par lesquels il est passé durant son parcour, et va ensuite effectuer l'algorythm pour d'autre sommet
+A | **** |
+A |c |s
+# La connexité se vérifie en while(incrémenter i != 0)
+On teste tous les chemins de tous les poinsts
+
+# Pour la partie B :
+Algorithme de Kosaraju!!!!
+![sorbonne](./Images/sorbonne.png )
