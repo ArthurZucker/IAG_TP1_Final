@@ -34,11 +34,16 @@ int main(int argc, char const *argv[])
 	for (int i = 0; i < taille; i++) {
 		sommet_marque_dugraphe[i] = (int *)calloc((taille+1),sizeof(int));
 	}
+		char *nom_fichier2;
+		nom_fichier2 = "digraph-1-predfs.dot";
+	create_dot(graphique,nom_fichier2);
 	printf("DFS\n" );
 	dfs(graphique,graphique2,1,tableau,sommet_marque_dugraphe);
 	// Ok
+	char *nom_fichier3;
+	nom_fichier3 = "digraph-1-postdfs.dot";
 	initialize_all(graphique2);
-	create_dot(graphique2);
+	create_dot(graphique2,nom_fichier3);
 	printf("On crée dot depuis graph2\n");
 	printf("Ordres de parcours\n" );
 	for (int i = 0; i < taille; i++) {

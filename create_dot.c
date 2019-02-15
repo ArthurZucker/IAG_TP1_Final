@@ -1,9 +1,9 @@
 #include "structure.h"
 #include <stdio.h>
 #include <stdlib.h>
-void create_dot(Graphe *graphe){
+void create_dot(Graphe *graphe,char nom_de_fichier[]){
 	FILE *f;
-	f = fopen("graphique.dot","wb+");
+	f = fopen(nom_de_fichier,"wb+");
 	if (graphe->oriente != 1)
 	{
 		fprintf(f, "graph premier_graph {\n");

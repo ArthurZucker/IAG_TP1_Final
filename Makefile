@@ -13,7 +13,9 @@ libfonctions.a: ${OBJ}
 main: ${OBJ} libfonctions.a
 	$(CC) $(OBJ) -o $@
 	./main
-	dot -Tps graphique.dot -o outfile.ps
+	dot -Tps digraph-1-predfs.dot -o outfile1.ps
+	dot -Tps digraph-1-postdfs.dot -o outfile2.ps
+	dot -Tps digraph-1-predfs_inverse.dot -o outfile3.ps
 clean:
 	rm -rf *.o main libfonctions.a graphique.dot outfile.ps outfile.pdf
 .PHONY: clean
