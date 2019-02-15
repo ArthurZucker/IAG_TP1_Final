@@ -4,7 +4,6 @@
 #include <stdio.h>
 void dfs3(Graphe *graphe,int sommet_depart ,liste_ordre **ordre_par_sommet, int **sommet_marque_dugraphe){
 	//La liste de sommet matquĂŠ est initialisĂŠe Ă  0 pour tous
-	//La liste de sommet matquĂŠ est initialisĂŠe Ă  0 pour tous
 	size_t taille = graphe->nb_sommets;
 	int *sommet_marque = (int *)calloc((taille+1),sizeof(int)); // sommet_marque[sommet] = 1 pour marquer un sommets
 	for (int i = 1; i < sommet_depart  ; ++i)
@@ -14,7 +13,7 @@ void dfs3(Graphe *graphe,int sommet_depart ,liste_ordre **ordre_par_sommet, int 
 			sommet_marque[i] = 1;
 			ordre -> nombre = i;
 			ordre -> suivant = NULL;
-			dfss3(graphe,i,sommet_marque,ordre);
+			dfss2(graphe,i,sommet_marque,ordre);
 			ordre_par_sommet[i-1] = ordre;
 		}
 		else{
@@ -34,7 +33,7 @@ void dfs3(Graphe *graphe,int sommet_depart ,liste_ordre **ordre_par_sommet, int 
 			sommet_marque[i] = 1;
 			ordre -> nombre = i;
 			ordre -> suivant = NULL;
-			dfss3(graphe,i,sommet_marque,ordre);
+			dfss2(graphe,i,sommet_marque,ordre);
 			ordre_par_sommet[i-1] = ordre;
 		}
 		else{

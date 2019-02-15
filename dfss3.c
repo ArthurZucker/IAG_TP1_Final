@@ -15,7 +15,7 @@ void dfss3(Graphe *graphe,int sommet, int *sommet_marque, liste_ordre *ordre){
       ordre_ajouter -> nombre= (graphe->liste_successeurs)[sommet-1][i];
       ordre_ajouter -> suivant = NULL;
       ajouter_fin_chaine(ordre,ordre_ajouter);
-      dfss3(graphe,(graphe->liste_successeurs)[sommet-1][i],sommet_marque,ordre);
+      dfss(graphe,(graphe->liste_successeurs)[sommet-1][i],sommet_marque,ordre);
       //Ici on reviens au sommet i, remettre le numéro du sommet pour les cfc ??
       // dfss2 pour gérer les ordres??
     }

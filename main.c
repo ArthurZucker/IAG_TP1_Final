@@ -10,7 +10,7 @@
 int main(int argc, char const *argv[])
 {
 	char *nom_fichier;
-	
+
 	scanf("%s",&nom_fichier);
 	Graphe *graphique = create_graph_from_file(&nom_fichier);
 	Graphe *graphique2 = (Graphe *)malloc(sizeof(Graphe ));
@@ -49,10 +49,13 @@ int main(int argc, char const *argv[])
 	printf("Connexite %d\n",connexe2(graphique,tableau));
 	afficher_mat(graphique->liste_adjacence,taille+1);
 	printf("Invers\n");
-	inverser(graphique);
+	//inverser(graphique);
 	afficher_mat(graphique->liste_adjacence,taille+1);
 	printf("composantes_fortement_connexes\n" );
 	int *composantes = (int *)calloc((taille),sizeof(int));
-	//composantes_fortement_connexes(graphique, composantes);
+	composantes_fortement_connexes(graphique, composantes);
+	for (size_t i = 0; i < taille; i++) {
+		afficher_liste_ordre(composantes[i]);
+	}
 	return 0;
 }
