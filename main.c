@@ -41,21 +41,26 @@ int main(int argc, char const *argv[])
 	printf("On crée dot depuis graph2\n");
 	printf("Ordres de parcours\n" );
 	for (int i = 0; i < taille; i++) {
-		printf("Ordre de parcours pour le sommer %d\n",i+1 );
-		afficher_liste_ordre(tableau[i]);
+		if (tableau[i] != NULL) {
+
+			printf("Ordre de parcours pour le sommer %d\n",i+1 );
+			afficher_liste_ordre(tableau[i]);
+		}
 	}//Affichage des ordres de parcours
 	printf("Tout vas bien jusqu\'ici\n" );
 	printf("Ok\n" );
 	printf("Connexite %d\n",connexe2(graphique,tableau));
-	afficher_mat(graphique->liste_adjacence,taille+1);
+	//afficher_mat(graphique->liste_adjacence,taille+1);
 	printf("Invers\n");
 	//inverser(graphique);
-	afficher_mat(graphique->liste_adjacence,taille+1);
+	//afficher_mat(graphique->liste_adjacence,taille+1);
 	printf("composantes_fortement_connexes\n" );
 	int *composantes = (int *)calloc((taille),sizeof(int));
 	composantes_fortement_connexes(graphique, composantes);
 	for (size_t i = 0; i < taille; i++) {
-		afficher_liste_ordre(composantes[i]);
+		if (composantes[i] != NULL) {
+			afficher_liste_ordre(composantes[i]);
+		}
 	}
 	return 0;
 }

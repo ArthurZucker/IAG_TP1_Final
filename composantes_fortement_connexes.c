@@ -19,6 +19,6 @@ void composantes_fortement_connexes(Graphe *graph, liste_ordre **composantes){
   inverser(graph);
   printf("DFS 2 avec nouvel ordre\n" );
   dfs2(graph,(graph->liste_adjacence)[0][1],composantes,ordre_ancien_dfs);
-  free(sommet_marque1);
+  //free(sommet_marque1);
   printf("CO fini\n" );
 }
