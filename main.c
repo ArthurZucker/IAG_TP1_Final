@@ -10,6 +10,7 @@
 int main(int argc, char const *argv[])
 {
 	char *nom_fichier;
+	
 	scanf("%s",&nom_fichier);
 	Graphe *graphique = create_graph_from_file(&nom_fichier);
 	Graphe *graphique2 = (Graphe *)malloc(sizeof(Graphe ));
