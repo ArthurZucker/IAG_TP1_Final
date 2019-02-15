@@ -37,6 +37,7 @@ int main(int argc, char const *argv[])
 	printf("DFS\n" );
 	dfs(graphique,graphique2,1,tableau,sommet_marque_dugraphe);
 	// Ok
+	initialize_all(graphique2);
 	create_dot(graphique2);
 	printf("On crée dot depuis graph2\n");
 	printf("Ordres de parcours\n" );
