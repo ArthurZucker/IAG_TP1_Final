@@ -10,6 +10,7 @@
 #include "afficher_liste_ordre.h"
 #include "initialize_all.h"
 #include "create_dot2.h"
+#include "free_graphique.h"
 int main(int argc, char const *argv[])
 {
 	char *nom_fichier;
@@ -39,7 +40,23 @@ int main(int argc, char const *argv[])
 	char *nom_fichier2;
 	nom_fichier2 = "digraph-1-predfs.dot";
 	create_dot(graphique,nom_fichier2);
+	printf("pi : [" );
+	for (size_t i = 0; i < taille; i++) {
+		printf("%3d", (graphique->pi)[i]);
+	}
+	printf("]\n" );
+
+
+
+	printf("alpha : [" );
+	int i =0;
+	while ((graphique->alpha)[i] != NULL){
+		printf("%3d", (graphique->alpha)[i]);
+		i++;
+	}
+	printf("]\n" );
 	dfs(graphique,graphique2,1,tableau,sommet_marque_dugraphe);
+	printf("En dehors du dfs refait!!!\n" );
 	// Ok
 	char *nom_fichier3;
 	nom_fichier3 = "digraph-1-postdfs.dot";
@@ -62,6 +79,9 @@ int main(int argc, char const *argv[])
 	}
 	char *nom_fichier12;
 	nom_fichier12 = "digraph-1-compo.dot";
+	inverser(graphique);
 	create_dot2(graphique,nom_fichier12,composantes,nb);
+	free_graphique(graphique);
+	free_graphique(graphique2);
 	return 0;
 }

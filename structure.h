@@ -6,9 +6,8 @@ typedef struct Graphe{
 	int nb_aretes;
 	int nb_sommets;
 	int oriente;
-	int **liste_incidence;
-	int *alpha;
 	int *pi;
+	int *alpha;
 	int **liste_adjacence;
 	int **liste_successeurs;
 }Graphe;

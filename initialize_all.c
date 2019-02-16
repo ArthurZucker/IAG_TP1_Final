@@ -6,24 +6,24 @@ void initialize_all(Graphe *graph){
   {
     (graph -> liste_successeurs)[i] = (int *)calloc(((graph -> nb_sommets)),sizeof(int ));
   }
-  (graph -> pi) = (int *)malloc(sizeof(int ));
-  (graph -> alpha) = (int *)calloc(((graph -> nb_sommets)),sizeof(int ));
+  (graph -> alpha) = (int *)malloc(sizeof(int ));
+  (graph -> pi) = (int *)calloc(((graph -> nb_sommets)),sizeof(int ));
   size_t cpt = 0;
   int cpt1 = 0;
   int cpt2 = 1;
   for (int i = 1; i < taille+1; i++) {
     //printf("%d\n", cpt);
     if (cpt2 == 1) {
-      (graph->alpha)[i-1] = cpt;
+      (graph->pi)[i-1] = cpt;
     }
     else{
-      (graph->alpha)[i-1] = -1;
+      (graph->pi)[i-1] = -1;
     }
     for (int ii = 1; ii < taille+1; ii++) {
       if ((graph->liste_adjacence)[i][ii]==1) {
         (graph->liste_successeurs)[i-1][cpt1]=ii;
-        (graph->pi) = (int *)realloc((graph->pi),(cpt+cpt1+1)*sizeof(int ));
-        (graph->pi)[cpt] = ii;
+        (graph->alpha) = (int *)realloc((graph->alpha),(cpt+cpt1+1)*sizeof(int ));
+        (graph->alpha)[cpt] = ii;
         cpt++;
         cpt1++;
         cpt2=1;

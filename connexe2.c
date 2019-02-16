@@ -1,6 +1,7 @@
 #include "structure.h"
 #include "dfs3.h"
 #include "initialize_all.h"
+#include "free_graphique.h"
 #include <stdio.h>
 int connexe2(Graphe *graphe){
   // On va parcourir les dfs de chaque sommets, et vĂŠrifier
@@ -45,6 +46,6 @@ int connexe2(Graphe *graphe){
   }
   free(sommet_marque_dugraphe);
   free(tableau);
-  //free_graphique(graphique2);
+  free_graphique(graphique2);
   return 1;
 }
