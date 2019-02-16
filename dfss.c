@@ -1,4 +1,6 @@
 #include "structure.h"
+#include "dfss.h"
+#include "create_sommet.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include "ajouter_fin_chaine.h"
@@ -13,7 +15,7 @@ void dfss(Graphe *graphe,Graphe *graphe2,int sommet, int *sommet_marque, liste_o
       // On va donc passer par i : ajouter en fin de chaine i
       create_sommet(graphe2,sommet,(graphe->liste_successeurs)[sommet-1][i]);
       liste_ordre *ordre_ajouter = (liste_ordre *)malloc(sizeof(liste_ordre));
-      ordre_ajouter -> nombre= (graphe->liste_successeurs)[sommet-1][i];
+      ordre_ajouter -> pre_ordre= (graphe->liste_successeurs)[sommet-1][i];
       ordre_ajouter -> suivant = NULL;
       ajouter_fin_chaine(ordre,ordre_ajouter);
       dfss(graphe,graphe2,(graphe->liste_successeurs)[sommet-1][i],sommet_marque,ordre);

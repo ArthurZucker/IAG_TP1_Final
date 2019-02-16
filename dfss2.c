@@ -10,7 +10,7 @@ void dfss2(Graphe *graphe,int sommet, int *sommet_marque, liste_ordre *ordre){
     //afficher_liste_ordre(ordre);
     if ((sommet_marque[(graphe->liste_successeurs)[sommet-1][i]]!=1)) {
       liste_ordre *ordre_ajouter = (liste_ordre *)malloc(sizeof(liste_ordre));
-      ordre_ajouter -> nombre= (graphe->liste_successeurs)[sommet-1][i];
+      ordre_ajouter -> pre_ordre= (graphe->liste_successeurs)[sommet-1][i];
       ordre_ajouter -> suivant = NULL;
       ajouter_fin_chaine(ordre,ordre_ajouter);
       dfss2(graphe,(graphe->liste_successeurs)[sommet-1][i],sommet_marque,ordre);

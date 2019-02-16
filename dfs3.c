@@ -1,4 +1,6 @@
 #include "structure.h"
+#include "dfss2.h"
+#include "afficher_liste_ordre.h"
 #include "dfss3.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -11,9 +13,9 @@ void dfs3(Graphe *graphe,int sommet_depart ,liste_ordre **ordre_par_sommet, int 
 		liste_ordre *ordre = (liste_ordre *)malloc(sizeof(liste_ordre));
 		if (sommet_marque[i]!=1) {
 			sommet_marque[i] = 1;
-			ordre -> nombre = i;
+			ordre -> pre_ordre = i;
 			ordre -> suivant = NULL;
-			dfss2(graphe,i,sommet_marque,ordre);
+			dfss3(graphe,i,sommet_marque,ordre);
 			ordre_par_sommet[i-1] = ordre;
 		}
 		else{
@@ -31,9 +33,9 @@ void dfs3(Graphe *graphe,int sommet_depart ,liste_ordre **ordre_par_sommet, int 
 		liste_ordre *ordre = (liste_ordre *)malloc(sizeof(liste_ordre));
 		if (sommet_marque[i]!=1) {
 			sommet_marque[i] = 1;
-			ordre -> nombre = i;
+			ordre -> pre_ordre = i;
 			ordre -> suivant = NULL;
-			dfss2(graphe,i,sommet_marque,ordre);
+			dfss3(graphe,i,sommet_marque,ordre);
 			ordre_par_sommet[i-1] = ordre;
 		}
 		else{

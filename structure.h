@@ -13,7 +13,8 @@ typedef struct Graphe{
 	int **liste_successeurs;
 }Graphe;
 typedef struct liste_ordre{
-	int nombre;
+	int pre_ordre;
+	int post_ordre;
 	struct liste_ordre *suivant;
 }liste_ordre;
 #endif

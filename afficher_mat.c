@@ -4,7 +4,7 @@ void afficher_mat(int **matrice,int taille){
 		printf("|" );
 		int i = 0;
 		while (matrice[i] != NULL) {
-			printf("%2d", matrice[i]);
+			printf("%2d", *matrice[i]);
 			i++;
 		}
 		printf("|\n");

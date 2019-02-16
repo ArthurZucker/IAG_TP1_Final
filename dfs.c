@@ -12,7 +12,7 @@ void dfs(Graphe *graphe,Graphe *graph2,int sommet_depart ,liste_ordre **ordre_pa
 		liste_ordre *ordre = (liste_ordre *)malloc(sizeof(liste_ordre));
 		if (sommet_marque[i]!=1) {
 			sommet_marque[i] = 1;
-			ordre -> nombre = i;
+			ordre -> pre_ordre = i;
 			ordre -> suivant = NULL;
 			dfss(graphe,graph2,i,sommet_marque,ordre);
 			ordre_par_sommet[i-1] = ordre;
@@ -20,7 +20,6 @@ void dfs(Graphe *graphe,Graphe *graph2,int sommet_depart ,liste_ordre **ordre_pa
 		else{
 			ordre -> suivant = NULL;
 			ordre_par_sommet[i-1] = NULL;
-			afficher_liste_ordre(NULL);
 		}
 
 		for (int ii = 0; ii < taille+1; ii++) {
@@ -32,7 +31,7 @@ void dfs(Graphe *graphe,Graphe *graph2,int sommet_depart ,liste_ordre **ordre_pa
 		liste_ordre *ordre = (liste_ordre *)malloc(sizeof(liste_ordre));
 		if (sommet_marque[i]!=1) {
 			sommet_marque[i] = 1;
-			ordre -> nombre = i;
+			ordre -> pre_ordre = i;
 			ordre -> suivant = NULL;
 			dfss(graphe,graph2,i,sommet_marque,ordre);
 			ordre_par_sommet[i-1] = ordre;

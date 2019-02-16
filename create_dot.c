@@ -32,12 +32,12 @@ void create_dot(Graphe *graphe,char nom_de_fichier[]){
 			}
 		}
 	}*/
-	for (int i = 1; i < (graphe->nb_sommets)+1; ++i)
+	for (int i = 1; i < (taille)+1; ++i)
 	{
 		if ((graphe->liste_successeurs)[i-1][0] == 0) {
 			fprintf(f, "%d;",i);
 		}
-		for (int ii = 1; ii < (graphe->nb_sommets)+1; ++ii)
+		for (int ii = 1; ii < (taille)+1; ++ii)
 		{
 			if ( (graphe->liste_adjacence)[i][ii] == 1 )
 			{

@@ -1,4 +1,5 @@
 #include "structure.h"
+#include "initialize_all.h"
 #include <stdio.h>
 void inverser(Graphe *graphique){
   if (graphique -> oriente != 1) {

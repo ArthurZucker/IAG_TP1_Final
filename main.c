@@ -7,10 +7,11 @@
 #include "inverser.h"
 #include "composantes_fortement_connexes.h"
 #include "initialize_all.h"
+#include "afficher_liste_ordre.h"
+#include "initialize_all.h"
 int main(int argc, char const *argv[])
 {
 	char *nom_fichier;
-
 	scanf("%s",&nom_fichier);
 	Graphe *graphique = create_graph_from_file(&nom_fichier);
 	Graphe *graphique2 = (Graphe *)malloc(sizeof(Graphe ));
@@ -61,7 +62,7 @@ int main(int argc, char const *argv[])
 	//inverser(graphique);
 	//afficher_mat(graphique->liste_adjacence,taille+1);
 	printf("composantes_fortement_connexes\n" );
-	int *composantes = (int *)calloc((taille),sizeof(int));
+	liste_ordre **composantes = (liste_ordre **)calloc((taille),sizeof(liste_ordre *));
 	composantes_fortement_connexes(graphique, composantes);
 	for (size_t i = 0; i < taille; i++) {
 		if (composantes[i] != NULL) {
