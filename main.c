@@ -9,6 +9,7 @@
 #include "initialize_all.h"
 #include "afficher_liste_ordre.h"
 #include "initialize_all.h"
+#include "create_dot2.h"
 int main(int argc, char const *argv[])
 {
 	char *nom_fichier;
@@ -64,10 +65,15 @@ int main(int argc, char const *argv[])
 	printf("composantes_fortement_connexes\n" );
 	liste_ordre **composantes = (liste_ordre **)calloc((taille),sizeof(liste_ordre *));
 	composantes_fortement_connexes(graphique, composantes);
+	int nb=0;
 	for (size_t i = 0; i < taille; i++) {
 		if (composantes[i] != NULL) {
 			afficher_liste_ordre(composantes[i]);
+			nb ++;
 		}
 	}
+	char *nom_fichier12;
+	nom_fichier12 = "digraph-1-compo.dot";
+	create_dot2(graphique,nom_fichier12,composantes,nb);
 	return 0;
 }
