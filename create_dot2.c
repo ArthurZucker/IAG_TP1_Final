@@ -12,18 +12,14 @@ void create_dot2(Graphe *graphe, char nom_de_fichier[],liste_ordre **composantes
 		fprintf(f, "digraph premier_graph {\n"); // write to file
 	}
 	int taille = (graphe->nb_sommets);
-  printf("Avant la boucle\n");
   for (int i = 0; i < nbc+1; i++) {
     liste_ordre *ordre_courant = composantes[i];
-    printf("OK\n" );
     if (     (ordre_courant) != (NULL)  ) {
-      printf("OK\n");
       if (   (ordre_courant -> suivant )  == (NULL)   )
       {
           fprintf(f,"\tsubgraph cluster_%d {\n",i);
           fprintf(f, "\t\t%d;\n\t}",(ordre_courant -> pre_ordre));
       }
-      printf("OK 2 pas null à des suivants\n" );
       if  (   (ordre_courant -> suivant )  != (NULL)   ){
         fprintf(f,"\tsubgraph cluster_%d {\n",i);
       	while ( ((ordre_courant) != NULL)) {

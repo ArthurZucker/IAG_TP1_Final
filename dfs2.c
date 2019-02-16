@@ -42,8 +42,8 @@ void dfs2(Graphe *graphe,int sommet_depart ,liste_ordre **ordre_par_sommet,liste
 			ordre -> suivant = NULL;
 			ordre_par_sommet[i-1] = NULL;
 		}
-    //free(ordre);
 	}
-  //free(new_dfs);
-  //free(ancien_dfs);
+  free(sommet_marque);
+  free(new_dfs);
+  free(ancien_dfs);
 }

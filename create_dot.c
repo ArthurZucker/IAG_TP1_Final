@@ -4,6 +4,7 @@
 void create_dot(Graphe *graphe,char nom_de_fichier[]){
 	FILE *f;
 	f = fopen(nom_de_fichier,"wb+");
+	//Utiliser alpha et pi
 	if (graphe->oriente != 1)
 	{
 		fprintf(f, "graph premier_graph {\n");
@@ -12,26 +13,6 @@ void create_dot(Graphe *graphe,char nom_de_fichier[]){
 		fprintf(f, "digraph premier_graph {\n"); // write to file
 	}
 	int taille = (graphe->nb_sommets);
-	/*for (size_t i = 0; i < taille; i++) {
-		if ((graphe->liste_successeurs	)[i][0]==0) {
-			fprintf(f, "%d",i);
-		}
-		for (size_t ii = 0; ii < taille; ii++) {
-			if ((graphe->liste_successeurs)[i][ii] !=0) {
-				if (graphe->oriente != 1 && ii>=i)
-				{
-				fprintf(f, "%d",i+1);
-				fprintf(f, " -- ");
-				fprintf(f, "%d ;\n",(graphe->liste_successeurs)[i][ii]);
-				}
-				else if (graphe->oriente == 1) {
-					fprintf(f, "%d",i+1);
-					fprintf(f, " -> ");
-					fprintf(f, "%d ;\n",(graphe->liste_successeurs)[i][ii]);
-				}
-			}
-		}
-	}*/
 	for (int i = 1; i < (taille)+1; ++i)
 	{
 		if ((graphe->liste_successeurs)[i-1][0] == 0) {

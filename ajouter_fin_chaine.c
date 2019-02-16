@@ -10,6 +10,4 @@ void ajouter_fin_chaine(liste_ordre *chaine,liste_ordre *a_ajouter){
   }
   ordre_courant -> suivant = a_ajouter;
   ordre_courant = NULL;
-  //printf("Dans ajouter_fin_chaine, chaine vaut\n");
-  //afficher_liste_ordre(chaine);
 }

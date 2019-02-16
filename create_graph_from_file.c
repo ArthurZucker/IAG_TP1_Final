@@ -56,6 +56,9 @@ Graphe *create_graph_from_file(char nom_de_fichier[]){
 	}
 	fclose (f);
 	free(line);
-    // On renvoie le graphe
-    return mon_graphique;
+	free(lecture1);
+	free(lecture2);
+	//free_graphique(mon_graphique);
+  // On renvoie le graphe
+  return mon_graphique;
 }
