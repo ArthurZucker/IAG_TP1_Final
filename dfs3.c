@@ -42,7 +42,6 @@ void dfs3(Graphe *graphe,int sommet_depart ,liste_ordre **ordre_par_sommet, int 
 			ordre -> suivant = NULL;
 			ordre_par_sommet[i-1] = NULL;
 		}
-		//ordre_par_sommet[i-1] = ordre;
 		for (int ii = 0; ii < taille+1; ii++) {
 			sommet_marque_dugraphe[i-1][ii] = sommet_marque[ii];
 		}

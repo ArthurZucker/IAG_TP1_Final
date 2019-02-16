@@ -11,6 +11,7 @@
 #include "initialize_all.h"
 #include "create_dot2.h"
 #include "free_graphique.h"
+#include "free_ordre.h"
 int main(int argc, char const *argv[])
 {
 	char *nom_fichier;
@@ -56,12 +57,27 @@ int main(int argc, char const *argv[])
 	}
 	printf("]\n" );
 	dfs(graphique,graphique2,1,tableau,sommet_marque_dugraphe);
-	printf("En dehors du dfs refait!!!\n" );
 	// Ok
 	char *nom_fichier3;
 	nom_fichier3 = "digraph-1-postdfs.dot";
 	initialize_all(graphique2);
 	create_dot(graphique2,nom_fichier3);
+	printf("Bugg dans afficher\n" );
+	printf("pi : [" );
+	for (size_t i = 0; i < taille; i++) {
+		printf("%3d", (graphique->pi)[i]);
+	}
+	printf("]\n" );
+
+
+
+	printf("alpha : [" );
+	i =0;
+	while ((graphique->alpha)[i] != NULL){
+		printf("%3d", (graphique->alpha)[i]);
+		i++;
+	}
+	printf("]\n" );
 	for (int i = 0; i < taille; i++) {
 		if (tableau[i] != NULL) {
 			afficher_liste_ordre(tableau[i]);
@@ -69,6 +85,7 @@ int main(int argc, char const *argv[])
 	}//Affichage des ordres de parcours
 	printf("Connexite %d\n",connexe2(graphique));
 	liste_ordre **composantes = (liste_ordre **)calloc((taille),sizeof(liste_ordre *));
+	//cfc bugg souvent, digraphe 2 et 3 passent pas
 	composantes_fortement_connexes(graphique, composantes);
 	int nb=0;
 	for (size_t i = 0; i < taille; i++) {
@@ -83,5 +100,10 @@ int main(int argc, char const *argv[])
 	create_dot2(graphique,nom_fichier12,composantes,nb);
 	free_graphique(graphique);
 	free_graphique(graphique2);
+	for (int i = 0; i < taille; i++) {
+		free_ordre(composantes[i]);
+		free_ordre(tableau[i]);
+	}
+
 	return 0;
 }

@@ -12,17 +12,20 @@ void create_dot2(Graphe *graphe, char nom_de_fichier[],liste_ordre **composantes
 		fprintf(f, "digraph premier_graph {\n"); // write to file
 	}
 	int taille = (graphe->nb_sommets);
+	printf("Erreur dans le for\n" );
   for (int i = 0; i < nbc+1; i++) {
     liste_ordre *ordre_courant = composantes[i];
     if (     (ordre_courant) != (NULL)  ) {
       if (   (ordre_courant -> suivant )  == (NULL)   )
       {
+					printf("Erreur dans le fprintf\n" );
           fprintf(f,"\tsubgraph cluster_%d {\n",i);
           fprintf(f, "\t\t%d;\n\t}",(ordre_courant -> pre_ordre));
       }
       if  (   (ordre_courant -> suivant )  != (NULL)   ){
         fprintf(f,"\tsubgraph cluster_%d {\n",i);
       	while ( ((ordre_courant) != NULL)) {
+					printf("Erreur dans le parcours\n" );
             fprintf(f, "\t\t%d;\n ",ordre_courant -> pre_ordre);
 						ordre_courant = ordre_courant -> suivant;
           }

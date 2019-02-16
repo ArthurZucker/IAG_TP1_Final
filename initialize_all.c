@@ -12,7 +12,6 @@ void initialize_all(Graphe *graph){
   int cpt1 = 0;
   int cpt2 = 1;
   for (int i = 1; i < taille+1; i++) {
-    //printf("%d\n", cpt);
     if (cpt2 == 1) {
       (graph->pi)[i-1] = cpt;
     }
@@ -31,8 +30,13 @@ void initialize_all(Graphe *graph){
     }
     if (cpt1==0) {
       cpt2=0;
+      //(graph->alpha)[cpt-1] = -1;
     }
     cpt1 = 0;
-
+  }
+  for (size_t i = 0; i < taille; i++) {
+    if (graph->liste_successeurs[i][0] == 0) {
+      (graph->alpha)[(graph->pi)[i]-1] = -1;
+    }
   }
 }
