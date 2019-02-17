@@ -11,6 +11,7 @@
 #include "initialize_all.h"
 #include "create_dot2.h"
 #include "free_graphique.h"
+#include "pont_graph.h"
 #include "free_ordre.h"
 int main(int argc, char const *argv[])
 {
@@ -41,43 +42,12 @@ int main(int argc, char const *argv[])
 	char *nom_fichier2;
 	nom_fichier2 = "digraph-1-predfs.dot";
 	create_dot(graphique,nom_fichier2);
-	printf("pi : [" );
-	for (size_t i = 0; i < taille; i++) {
-		printf("%3d", (graphique->pi)[i]);
-	}
-	printf("]\n" );
-
-
-
-	printf("alpha : [" );
-	int i =0;
-	while ((graphique->alpha)[i] != NULL){
-		printf("%3d", (graphique->alpha)[i]);
-		i++;
-	}
-	printf("]\n" );
 	dfs(graphique,graphique2,1,tableau,sommet_marque_dugraphe);
 	// Ok
 	char *nom_fichier3;
 	nom_fichier3 = "digraph-1-postdfs.dot";
 	initialize_all(graphique2);
 	create_dot(graphique2,nom_fichier3);
-	printf("Bugg dans afficher\n" );
-	printf("pi : [" );
-	for (size_t i = 0; i < taille; i++) {
-		printf("%3d", (graphique->pi)[i]);
-	}
-	printf("]\n" );
-
-
-
-	printf("alpha : [" );
-	i =0;
-	while ((graphique->alpha)[i] != NULL){
-		printf("%3d", (graphique->alpha)[i]);
-		i++;
-	}
-	printf("]\n" );
 	for (int i = 0; i < taille; i++) {
 		if (tableau[i] != NULL) {
 			afficher_liste_ordre(tableau[i]);
@@ -90,7 +60,7 @@ int main(int argc, char const *argv[])
 	int nb=0;
 	for (size_t i = 0; i < taille; i++) {
 		if (composantes[i] != NULL) {
-			afficher_liste_ordre(composantes[i]);
+			//afficher_liste_ordre(composantes[i]);
 			nb ++;
 		}
 	}
@@ -98,12 +68,13 @@ int main(int argc, char const *argv[])
 	nom_fichier12 = "digraph-1-compo.dot";
 	inverser(graphique);
 	create_dot2(graphique,nom_fichier12,composantes,nb);
+	printf("As-t-il des ponts %d?\n",pont_graph(graphique) );
+	//Complexité linéaire de l'orientation du graphe
 	free_graphique(graphique);
 	free_graphique(graphique2);
 	for (int i = 0; i < taille; i++) {
 		free_ordre(composantes[i]);
 		free_ordre(tableau[i]);
 	}
-
 	return 0;
 }
