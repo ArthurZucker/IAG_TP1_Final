@@ -3,6 +3,8 @@
 #include "create_dot.h"
 #include "afficher_liste_ordre.h"
 #include "dfs4.h"
+#include "free_graphique.h"
+#include "free_ordre.h"
 #include "composantes_fortement_connexes.h"
 void strong_orientation(Graphe *graphe){
     //dfs puis orienter toutes les arretes du dfs en s'éloignant de la racine de l'arbre, orienter les
@@ -39,8 +41,6 @@ void strong_orientation(Graphe *graphe){
     		arretes_marque_dugraphe[i] = (int *)calloc((2),sizeof(int));
     	}
       dfs4(graphe,1,tableau,sommet_marque_dugraphe);
-      printf("DANS STRONG ORI\n" );
-      afficher_liste_ordre(tableau[0]);
       liste_ordre *ordre_c = tableau[0];
       int i =0;
       while (ordre_c != NULL) {
@@ -82,13 +82,19 @@ void strong_orientation(Graphe *graphe){
       int nb=0;
     	for (size_t i = 0; i < taille; i++) {
     		if (composantes[i] != NULL) {
-    			//afficher_liste_ordre(composantes[i]);
     			nb ++;
     		}
     	}
       char *nom_fichier12;
     	nom_fichier12 = "digraph-1-strong_orientationfc.dot";
     	create_dot2(graphique2,nom_fichier12,composantes,nb);
+      free_graphique(graphique2);
+      for (size_t i = 0; i < taille; i++) {
+        free_ordre(tableau[i]);
+        free_ordre(composantes[i]);
+        free(sommet_marque_dugraphe[i]);
+        free(arretes_marque_dugraphe[i]);
+      }
 
     }
 
