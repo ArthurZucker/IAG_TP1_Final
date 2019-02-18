@@ -13,6 +13,7 @@
 #include "free_graphique.h"
 #include "pont_graph.h"
 #include "free_ordre.h"
+#include "strong_orientation.h"
 int main(int argc, char const *argv[])
 {
 	char *nom_fichier;
@@ -55,7 +56,6 @@ int main(int argc, char const *argv[])
 	}//Affichage des ordres de parcours
 	printf("Connexite %d\n",connexe2(graphique));
 	liste_ordre **composantes = (liste_ordre **)calloc((taille),sizeof(liste_ordre *));
-	//cfc bugg souvent, digraphe 2 et 3 passent pas
 	composantes_fortement_connexes(graphique, composantes);
 	int nb=0;
 	for (size_t i = 0; i < taille; i++) {
@@ -69,7 +69,8 @@ int main(int argc, char const *argv[])
 	inverser(graphique);
 	create_dot2(graphique,nom_fichier12,composantes,nb);
 	printf("As-t-il des ponts %d?\n",pont_graph(graphique) );
-	//Complexité linéaire de l'orientation du graphe
+	strong_orientation(graphique);
+	//Complexité linéaire pour la mise en place de l'orientation forte du graphe
 	free_graphique(graphique);
 	free_graphique(graphique2);
 	for (int i = 0; i < taille; i++) {

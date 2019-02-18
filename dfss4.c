@@ -10,8 +10,9 @@ void dfss4(Graphe *graphe,int sommet, int *sommet_marque, liste_ordre *ordre){
       liste_ordre *ordre_ajouter = (liste_ordre *)malloc(sizeof(liste_ordre));
       ordre_ajouter -> pre_ordre = (graphe->liste_successeurs)[sommet-1][i];
       ordre_ajouter -> suivant = NULL;
-      dfss4(graphe,(graphe->liste_successeurs)[sommet-1][i],sommet_marque,ordre);
       ajouter_fin_chaine(ordre,ordre_ajouter);
+      dfss4(graphe,(graphe->liste_successeurs)[sommet-1][i],sommet_marque,ordre);
+      //ajouter_fin_chaine(ordre,ordre_ajouter);
     }
     i++;
   }
