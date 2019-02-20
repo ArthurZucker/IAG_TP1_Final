@@ -12,7 +12,7 @@ void dfss4(Graphe *graphe,int sommet, int *sommet_marque, liste_ordre *ordre){
       ordre_ajouter -> suivant = NULL;
       ajouter_fin_chaine(ordre,ordre_ajouter);
       dfss4(graphe,(graphe->liste_successeurs)[sommet-1][i],sommet_marque,ordre);
-      //ajouter_fin_chaine(ordre,ordre_ajouter);
+      //ajouter_fin_chaine(ordre,ordre_ajouter2); //la remontée
     }
     i++;
   }
