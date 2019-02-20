@@ -40,8 +40,8 @@ void strong_orientation(Graphe *graphe){
     	for (int i = 0; i < taille; i++) {
     		sommet_marque_dugraphe[i] = (int *)calloc((taille+1),sizeof(int));
     	}
-      int **arretes_marque_dugraphe = (int **)calloc((taille+1),sizeof(int *));
-    	for (int i = 0; i < taille; i++) {
+      int **arretes_marque_dugraphe = (int **)calloc(2*(taille+1),sizeof(int *));
+    	for (int i = 0; i < 2*taille; i++) {
     		arretes_marque_dugraphe[i] = (int *)calloc((2),sizeof(int));
     	}
       //Le dfs qui est effectué doit prendre en compte la remontée, pour indiquer que l'on remonte
@@ -62,17 +62,24 @@ void strong_orientation(Graphe *graphe){
       //On a aussi marqué toutes les arretes visitées
       //Il ne reste plus qu'à orienter les arretes restantes
       for (int k = 1; k < taille+1; k++) {
-        for (int  ii = 1; ii < k+1; ii++) {
+        for (int  ii = 1; ii < taille ; ii++) {
           int ok = 0;
-          for (int j = 0; j < i; j++) {
-            if ((arretes_marque_dugraphe[j][0] == k &&  arretes_marque_dugraphe[j][1] == ii) || (arretes_marque_dugraphe[j][1] == k &&  arretes_marque_dugraphe[j][0] == ii )) {
+          for (int j = 0; j < i+1; j++) {
+            if ((arretes_marque_dugraphe[j][0] == k &&  arretes_marque_dugraphe[j][1] == ii)) {
               ok = 1 ; //Si les arretes ont été orienté par le dfs on ne doit pas les reprendre
+            }
+            if ((arretes_marque_dugraphe[j][1] == k &&  arretes_marque_dugraphe[j][0] == ii )) {
+              ok = 1 ;
             }
           }
           if (ok == 0) {
-            if (graphe -> liste_adjacence[k][ii] == 1) {
+            if (graphe -> liste_adjacence[k][ii] == 1 && ii<k) {
               printf("Lisaison que l'on construit : %d -> %i\n", k,ii);
               graphique2 -> liste_adjacence[k][ii] = 1;
+              i++;
+              arretes_marque_dugraphe[i][0] = k;
+              arretes_marque_dugraphe[i][1] = ii;
+              printf("On a bien marqué les sommets\n");
             }
           }
         }
