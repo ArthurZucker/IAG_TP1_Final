@@ -61,7 +61,7 @@ void strong_orientation(Graphe *graphe){
       //On a orienté toutes les arretes dans le sens inverse de la racine
       //On a aussi marqué toutes les arretes visitées
       //Il ne reste plus qu'à orienter les arretes restantes
-      for (int k = 1; k < taille+1; k++) {
+      for (int k = 1; k < (taille+1); k++) {
         for (int  ii = 1; ii < taille ; ii++) {
           int ok = 0;
           for (int j = 0; j < i+1; j++) {
@@ -73,13 +73,23 @@ void strong_orientation(Graphe *graphe){
             }
           }
           if (ok == 0) {
-            if (graphe -> liste_adjacence[k][ii] == 1 && ii<k) {
-              printf("Lisaison que l'on construit : %d -> %i\n", k,ii);
-              graphique2 -> liste_adjacence[k][ii] = 1;
-              i++;
-              arretes_marque_dugraphe[i][0] = k;
-              arretes_marque_dugraphe[i][1] = ii;
-              printf("On a bien marqué les sommets\n");
+            if (graphe -> liste_adjacence[k][ii] == 1 || graphe -> liste_adjacence[ii][k] == 1) {
+              if (ii<k) {
+                printf("Lisaison que l'on construit : %d -> %i\n", k,ii);
+                graphique2 -> liste_adjacence[k][ii] = 1;
+                i++;
+                arretes_marque_dugraphe[i][0] = k;
+                arretes_marque_dugraphe[i][1] = ii;
+                printf("On a bien marqué les sommets\n");
+              }
+              else if (ii>k && k>taille/2) {
+                printf("Lisaison que l'on construit : %d -> %i\n", ii,k);
+                graphique2 -> liste_adjacence[k][ii] = 1;
+                i++;
+                arretes_marque_dugraphe[i][0] = k;
+                arretes_marque_dugraphe[i][1] = ii;
+                printf("On a bien marqué les sommets\n");
+              }
             }
           }
         }

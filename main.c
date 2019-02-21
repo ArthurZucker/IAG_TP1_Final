@@ -65,9 +65,9 @@ int main(int argc, char const *argv[])
 		}
 	}
 	char *nom_fichier12;
-	nom_fichier12 = "digraph-1-compoaprèscfc.dot";
+	//nom_fichier12 = "digraph-1-compoaprèscfc.dot";
 	//inverser(graphique);
-	create_dot2(graphique,nom_fichier12,composantes,nb);
+	//create_dot2(graphique,nom_fichier12,composantes,nb);
 	printf("As-t-il des ponts %d?\n",pont_graph(graphique) );
 	strong_orientation(graphique);
 	//Complexité linéaire pour la mise en place de l'orientation forte du graphe
