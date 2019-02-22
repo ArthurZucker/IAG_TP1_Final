@@ -60,14 +60,14 @@ int main(int argc, char const *argv[])
 	int nb=0;
 	for (size_t i = 0; i < taille; i++) {
 		if (composantes[i] != NULL) {
-			//afficher_liste_ordre(composantes[i]);
+			afficher_liste_ordre(composantes[i]);
 			nb ++;
 		}
 	}
 	char *nom_fichier12;
-	//nom_fichier12 = "digraph-1-compoaprèscfc.dot";
+	nom_fichier12 = "digraph-1-compoaprèscfc.dot";
 	//inverser(graphique);
-	//create_dot2(graphique,nom_fichier12,composantes,nb);
+	create_dot2(graphique,nom_fichier12,composantes,nb);
 	printf("As-t-il des ponts %d?\n",pont_graph(graphique) );
 	strong_orientation(graphique);
 	//Complexité linéaire pour la mise en place de l'orientation forte du graphe
