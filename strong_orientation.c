@@ -22,26 +22,24 @@ void strong_orientation(Graphe *graphe){
       printf("Orientons le graphe\n" );
       Graphe *graphique2 = (Graphe *)malloc(sizeof(Graphe ));
     	int taille = (graphe->nb_sommets);
-    	graphique2 ->nb_sommets = taille;
+    	graphique2 -> nb_sommets = taille;
     	graphique2 -> nb_aretes  = (graphe-> nb_aretes);
     	graphique2 -> oriente = 1;
-    	graphique2->liste_adjacence = (int **)calloc(taille+1,(sizeof(int *)));
-    	for (size_t i = 0; i < taille+1; i++) {
+    	graphique2 -> liste_adjacence = (int **)calloc(taille+1,(sizeof(int *)));
+    	for (int i = 0; i < taille+1; i++) {
     		graphique2->liste_adjacence[i] = (int *)calloc(taille+1,(sizeof(int )));
     	}
-    	for (int i = 0; i < taille +1; ++i)
-    	{
+    	for (int i = 0; i < taille +1; ++i){
     		(graphique2->liste_adjacence)[0][i] = i;
     		(graphique2->liste_adjacence)[i][0] = i;
     	}
-
       liste_ordre **tableau = (liste_ordre **)malloc((taille+1)*sizeof(liste_ordre *));
     	int **sommet_marque_dugraphe = (int **)calloc((taille+1),sizeof(int *));
     	for (int i = 0; i < taille; i++) {
     		sommet_marque_dugraphe[i] = (int *)calloc((taille+1),sizeof(int));
     	}
       int **arretes_marque_dugraphe = (int **)calloc(2*(taille+1),sizeof(int *));
-    	for (int i = 0; i < 2*taille; i++) {
+    	for (int i = 0; i < 2*taille+1; i++) {
     		arretes_marque_dugraphe[i] = (int *)calloc((2),sizeof(int));
     	}
       //Le dfs qui est effectué doit prendre en compte la remontée, pour indiquer que l'on remonte
@@ -94,6 +92,7 @@ void strong_orientation(Graphe *graphe){
           }
         }
       }
+      //free_graphique(graphique2);
       initialize_all(graphique2); // On initialise pour les dfs
       afficher_mat(graphique2 -> liste_adjacence,taille+1);
       char *nom_fichier;
@@ -103,7 +102,7 @@ void strong_orientation(Graphe *graphe){
       liste_ordre **composantes = (liste_ordre **)malloc((taille)*sizeof(liste_ordre *));
     	composantes_fortement_connexes(graphique2, composantes);
       int nb=0;
-    	for (size_t i = 0; i < taille; i++) {
+    	for (int i = 0; i < taille; i++) {
     		if (composantes[i] != NULL) {
     			nb ++;
     		}
@@ -112,13 +111,22 @@ void strong_orientation(Graphe *graphe){
     	nom_fichier12 = "digraph-1-strong_orientationfc.dot";
     	create_dot2(graphique2,nom_fichier12,composantes,nb);
       free_graphique(graphique2);
-      for (size_t i = 0; i < taille; i++) {
-        free_ordre(tableau[i]);
-        free_ordre(composantes[i]);
-        free(sommet_marque_dugraphe[i]);
+      int iii = 0;
+      for (iii = 0; iii < taille; iii++) {
+        free_ordre(tableau[iii]);
+        free_ordre(composantes[iii]);
+        free(sommet_marque_dugraphe[iii]);
+
+      }
+      for (int i = 0; i < 2*taille+1; i++) {
         free(arretes_marque_dugraphe[i]);
       }
-
+      free_ordre(tableau[iii+1]);
+      free(sommet_marque_dugraphe[iii+1]);
+      free(arretes_marque_dugraphe);
+      free(sommet_marque_dugraphe);
+      free(tableau);
+      free(composantes);
     }
 
   }

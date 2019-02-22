@@ -8,4 +8,6 @@ void free_ordre(liste_ordre *ordre){
    free(ordre_courant);
    ordre_courant = ordre_courant2;
  }
+ free(ordre_courant2);
+ free(ordre);
 }

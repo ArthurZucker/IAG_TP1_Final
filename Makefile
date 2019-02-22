@@ -1,5 +1,5 @@
 CC = gcc
-LDFLAGS = -Wall
+LDFLAGS = -Wall -g
 LIB = $(wildcard *.c)
 OBJ = $(LIB:.c=.o)
 all: main
@@ -12,13 +12,13 @@ libfonctions.a: ${OBJ}
 	ranlib $@
 main: ${OBJ} libfonctions.a
 	$(CC) $(OBJ) -o $@
-	./main
+	valgrind --leak-check=full --track-origins=yes ./main
 	dot -Tps digraph-1-strong_orientationfc.dot -o orifortecfc.ps
 	dot -Tps digraph-1-strong_orientation.dot	-o oriforte.ps
 	dot -Tps digraph-1-predfs.dot	-o predf.ps
 	dot -Tps digraph-1-postdfs.dot  -o postdfs.ps
 	dot -Tps digraph-1-compoaprèscfc.dot -o compoaprèscfc.ps
-	open *.ps
+
 clean:
 	rm -rf *.o main libfonctions.a *.dot *.ps
 .PHONY: clean

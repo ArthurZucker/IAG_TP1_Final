@@ -3,6 +3,7 @@
 #include "initialize_all.h"
 #include "free_graphique.h"
 #include "afficher_liste_ordre.h"
+#include "free_ordre.h"
 #include <stdio.h>
 int connexe2(Graphe *graphe){
   // On va parcourir les dfs de chaque sommets, et vĂŠrifier
@@ -18,7 +19,7 @@ int connexe2(Graphe *graphe){
   graphique2 -> nb_aretes  =(graphe-> nb_aretes);
   graphique2 -> oriente = graphe -> oriente;
   graphique2 -> liste_adjacence = (int **)calloc(taille+1,(sizeof(int *)));
-  for (size_t i = 0; i < taille+1; i++) {
+  for (int i = 0; i < taille+1; i++) {
       graphique2->liste_adjacence[i] = (int *)calloc(taille+1,(sizeof(int )));
   }
   for (int i = 0; i < taille +1; ++i)
@@ -26,8 +27,8 @@ int connexe2(Graphe *graphe){
      (graphique2->liste_adjacence)[0][i] = i;
      (graphique2->liste_adjacence)[i][0] = i;
   }
-  for (size_t i = 1; i < taille+1; i++) {
-    for (size_t ii = 1; ii < taille+1; ii++) {
+  for (int i = 1; i < taille+1; i++) {
+    for (int ii = 1; ii < taille+1; ii++) {
       (graphique2->liste_adjacence)[i][ii] = (graphe->liste_adjacence)[i][ii];
       (graphique2->liste_adjacence)[ii][i] = (graphe->liste_adjacence)[ii][i];
     }
@@ -37,18 +38,21 @@ int connexe2(Graphe *graphe){
   liste_ordre *ordre_courant = tableau[1];
   for (int i = 1; i < taille+1; i++) {
     if (ordre_courant != NULL) {
-      for (size_t i = 0; i < taille; i++) {
+      for (int i = 0; i < taille; i++) {
         afficher_liste_ordre(tableau[i]);
       }
 
       return 0;
     }
+    free_ordre(ordre_courant);
     ordre_courant =  tableau[i];
   }
-  for (size_t i = 0; i < taille; i++) {
-    free(tableau[i]);
+  int i = 0;
+  for ( i = 0; i < taille; i++) {
+    free_ordre(tableau[i]);
     free(sommet_marque_dugraphe[i]);
   }
+  free(sommet_marque_dugraphe[i+1]);
   free(sommet_marque_dugraphe);
   free(tableau);
   free_graphique(graphique2);

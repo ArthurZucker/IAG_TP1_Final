@@ -7,7 +7,7 @@ void dfs2(Graphe *graphe,int sommet_depart ,liste_ordre **ordre_par_sommet,liste
   int *ancien_dfs = NULL;
   liste_ordre *ordre_courant = ordre_ancien_dfs[0];
   int nb_composantes =0;
-  for (size_t i = 0; i < graphe->nb_sommets -1; i++) {
+  for (int i = 0; i < graphe->nb_sommets -1; i++) {
     if (ordre_courant != NULL) {
       while (ordre_courant -> suivant != NULL) {
         ancien_dfs = (int *)realloc(ancien_dfs,(nb_composantes+1)*sizeof(int));
@@ -23,7 +23,7 @@ void dfs2(Graphe *graphe,int sommet_depart ,liste_ordre **ordre_par_sommet,liste
     ordre_courant = ordre_ancien_dfs[i+1];
   }
   int *new_dfs = (int *)malloc((nb_composantes)*sizeof(int));
-  for (size_t i = 0; i < nb_composantes+1; i++) {
+  for (int i = 0; i < nb_composantes+1; i++) {
     new_dfs[i] = ancien_dfs[nb_composantes-i-1];
   }
   int taille = graphe -> nb_sommets;
@@ -42,6 +42,7 @@ void dfs2(Graphe *graphe,int sommet_depart ,liste_ordre **ordre_par_sommet,liste
 			ordre -> suivant = NULL;
 			ordre_par_sommet[i-1] = NULL;
 		}
+    free(ordre);
 	}
   free(sommet_marque);
   free(new_dfs);

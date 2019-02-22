@@ -15,11 +15,16 @@ void inverser(Graphe *graphique){
     {
     	inverse[0][i] = i;
 			inverse[i][0] = i;
-      for (size_t ii = 1; ii < (graphique -> nb_sommets ) +1; ii++) {
+      for (int ii = 1; ii < (graphique -> nb_sommets ) +1; ii++) {
         inverse[ii][i] = (graphique ->liste_adjacence)[i][ii];
       }
     }
     graphique -> liste_adjacence = inverse;
+    for (int i = 0; i < (graphique -> nb_sommets)+1; i++) {
+      free(inverse[i]);
+    }
+    free(inverse);
   }
-  initialize_all(graphique);
+  initialize_all2(graphique);
+
 }
