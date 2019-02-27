@@ -12,7 +12,7 @@ libfonctions.a: ${OBJ}
 	ranlib $@
 main: ${OBJ} libfonctions.a
 	$(CC) $(OBJ) -o $@
-	valgrind --leak-check=full --track-origins=yes ./main
+	./main
 	dot -Tps digraph-1-strong_orientationfc.dot -o orifortecfc.ps
 	dot -Tps digraph-1-strong_orientation.dot	-o oriforte.ps
 	dot -Tps digraph-1-predfs.dot	-o predf.ps
