@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
 	graphique2 -> nb_aretes  =(graphique-> nb_aretes);
 	graphique2 -> oriente = graphique -> oriente;
 	graphique2->liste_adjacence = (int **)calloc(taille+1,(sizeof(int *)));
-	for (int i = 0; i < taille+1; i++) {
+	for (size_t i = 0; i < taille+1; i++) {
 		graphique2->liste_adjacence[i] = (int *)calloc(taille+1,(sizeof(int )));
 	}
 	for (int i = 0; i < taille +1; ++i)
@@ -44,11 +44,14 @@ int main(int argc, char const *argv[])
 	nom_fichier2 = "digraph-1-predfs.dot";
 	create_dot(graphique,nom_fichier2);
 	dfs(graphique,graphique2,1,tableau,sommet_marque_dugraphe);
-	// Ok
+
 	char *nom_fichier3;
 	nom_fichier3 = "digraph-1-postdfs.dot";
 	initialize_all(graphique2);
 	create_dot(graphique2,nom_fichier3);
+	printf("Not okay dfs\n" );
+
+
 	for (int i = 0; i < taille; i++) {
 		if (tableau[i] != NULL) {
 			afficher_liste_ordre(tableau[i]);
@@ -58,7 +61,7 @@ int main(int argc, char const *argv[])
 	liste_ordre **composantes = (liste_ordre **)calloc((taille),sizeof(liste_ordre *));
 	composantes_fortement_connexes(graphique, composantes);
 	int nb=0;
-	for (int i = 0; i < taille; i++) {
+	for (size_t i = 0; i < taille; i++) {
 		if (composantes[i] != NULL) {
 			afficher_liste_ordre(composantes[i]);
 			nb ++;
@@ -66,10 +69,13 @@ int main(int argc, char const *argv[])
 	}
 	char *nom_fichier12;
 	nom_fichier12 = "digraph-1-compoaprèscfc.dot";
-	//inverser(graphique);
+
 	create_dot2(graphique,nom_fichier12,composantes,nb);
 	printf("As-t-il des ponts %d?\n",pont_graph(graphique) );
-	strong_orientation(graphique);
+	if (pont_graph(graphique) == 0) {
+
+		strong_orientation(graphique);
+	}
 	//Complexité linéaire pour la mise en place de l'orientation forte du graphe
 	free_graphique(graphique);
 	free_graphique(graphique2);

@@ -12,12 +12,12 @@ libfonctions.a: ${OBJ}
 	ranlib $@
 main: ${OBJ} libfonctions.a
 	$(CC) $(OBJ) -o $@
-	./main
-	dot -Tps digraph-1-strong_orientationfc.dot -o orifortecfc.ps
-	dot -Tps digraph-1-strong_orientation.dot	-o oriforte.ps
-	dot -Tps digraph-1-predfs.dot	-o predf.ps
-	dot -Tps digraph-1-postdfs.dot  -o postdfs.ps
-	dot -Tps digraph-1-compoaprèscfc.dot -o compoaprèscfc.ps
+	valgrind --leak-check=full --track-origins=yes ./main
+	dot -Tpdf digraph-1-strong_orientationfc.dot -o ./Images/orifortecfc.pdf
+	dot -Tpdf digraph-1-strong_orientation.dot	-o ./Images/oriforte.pdf
+	dot -Tpdf digraph-1-predfs.dot	-o ./Images/predf.pdf
+	dot -Tpdf digraph-1-postdfs.dot  -o ./Images/postdfs.pdf
+	dot -Tpdf digraph-1-compoaprèscfc.dot -o ./Images/compoaprèscfc.pdf
 
 clean:
 	rm -rf *.o main libfonctions.a *.dot *.ps
